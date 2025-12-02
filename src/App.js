@@ -4,6 +4,18 @@ import { Grid } from '@mui/material';
 import QuoteMachine from './components/QuoteMachine';
 import Card from '@mui/material/Card';// Added import for Card
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  typography: {
+    // Set Playwrite US Traditional Guides as the primary font family
+    fontFamily: [
+      'Playwrite US Traditional Guides', // The exact name of the imported font
+      'cursive', // Fallback for handwriting fonts
+    ].join(','),
+  },
+});
+
 class App extends Component{
     constructor(props){
     super(props);
@@ -45,34 +57,36 @@ class App extends Component{
 
   render() {
     return (
-    <Grid 
-      id = "quote-box"
-      container
-      justifyContent = "center"
-      sx={{
-        alignItems: 'center',
-        display: 'flex',
-        height: '100vh',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        }
-      }
-    >
-      <Grid xs = {11} lg={8} item>
-        <Card sx={{ 
-            maxWidth: '600px', 
-            width: '100%' 
-          }}>
-        {
-            this.selectedQuote ?
-            <QuoteMachine 
-              selectedQuote = {this.selectedQuote} 
-              assignNewQuoteIndex = {this.assignNewQuoteIndex}
-            />:
-            null
-        }
-        </Card>
-      </Grid>
-    </Grid>
+      <ThemeProvider theme={theme}>
+        <Grid 
+          id = "quote-box"
+          container
+          justifyContent = "center"
+          sx={{
+            alignItems: 'center',
+            display: 'flex',
+            height: '100vh',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            }
+          }
+        >
+          <Grid xs = {11} lg={8} item>
+            <Card sx={{ 
+                maxWidth: '600px', 
+                width: '100%' 
+              }}>
+            {
+                this.selectedQuote ?
+                <QuoteMachine 
+                  selectedQuote = {this.selectedQuote} 
+                  assignNewQuoteIndex = {this.assignNewQuoteIndex}
+                />:
+                null
+            }
+            </Card>
+          </Grid>
+        </Grid>
+      </ThemeProvider>
     );
   }
 }
