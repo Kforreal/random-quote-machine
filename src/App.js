@@ -18,7 +18,7 @@ class App extends Component{
   componentDidMount(){
     fetch('https://gist.githubusercontent.com/shreyasminocha/7d5dedafc1fe158f82563c1223855177/raw/325d51aca7165b2498971afcff9bed286a52dc0e/quotes.json')
       .then(data => data.json())
-      .then(quotes => this.setState({ quotes }, this.assignNewQuoteIndex())); 
+      .then(quotes => this.setState({ quotes }, this.assignNewQuoteIndex)); 
   }
 
   get selectedQuote(){
